@@ -6,7 +6,7 @@ from pathlib import Path
 
 # AWS Configuration
 AWS_REGION = "us-east-1"  
-BUCKET_NAME = "kp-eks-release" #bucket-name
+BUCKET_NAME = "MY_BUCKET" #bucket-name
 # FOLDER_PREFIXES = [""]  # List for dir with bucket eg:- "stage/kp-lambda-account-usage-service/"
 RETENTION_DAYS = 300  # Number of Days the data is kept in the bucket
 
@@ -22,7 +22,7 @@ def check_old_files():
     if "Contents" in response:
             for obj in response["Contents"]:
                 file_key = obj["Key"]
-                filename = Path(os.path.basename(file_key))
+                filename = Path(os.path.basename(file_key)) # to check wheather the filename is valid or not
                 last_modified = obj["LastModified"]
                 age_days = (current_date - last_modified).days
 
